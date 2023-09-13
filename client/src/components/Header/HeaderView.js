@@ -55,6 +55,7 @@ import {
 	refreshType,
 	getBlockListSearchType
 } from '../types';
+import { Tooltip } from '@material-ui/core';
 
 const {
 	blockPerHour,
@@ -293,7 +294,15 @@ export class HeaderView extends Component {
 			nextProps.channels.forEach(element => {
 				options.push({
 					value: element.channel_genesis_hash,
-					label: element.channelname
+					label: (
+						<Tooltip
+							placement="right"
+							title={`Updated ${element?.agoBlockTime} ago`}
+							arrow
+						>
+							<div>{element.channelname}</div>
+						</Tooltip>
+					)
 				});
 				if (
 					nextProps.currentChannel == null ||
